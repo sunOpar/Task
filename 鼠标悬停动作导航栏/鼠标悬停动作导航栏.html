@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+	<title>导航栏v1.0</title>
+	<style type="text/css">
+		/*@group general style*/
+		*{margin: 0;padding: 0;font-size: 14px;}
+		a{color: #333;text-decoration: none;}
+		ul{
+			list-style: none;border-bottom: 5px solid #f60;height: 50px;
+			padding-left: 30px;
+		}
+		li{
+			margin-top:20px;
+			float: left;}
+		/*@group overrides*/
+		.nav li a{
+			display: block;
+			text-align: center;
+			height: 30px;
+			line-height:30px;
+			width: 120px;
+			background-color: #efefef;			
+			border-radius: 5px;
+		}
+		.nav .on,.nav li a:hover{
+			color: #fff;
+			background-color: #f60;
+			height: 40px;
+			line-height: 40px;
+			margin-top: -10px;
+		}
+	</style>
+</head>
+<body>
+	<ul class="nav" >
+		<li><a class="on" href="#">首    页</a></li>
+		<li><a href="#">新闻快讯</a></li>
+		<li><a href="#">产品展示</a></li>
+		<li><a href="#">售后服务</a></li>
+		<li><a href="#">联系我们</a></li>
+	</ul>
+	<script type="text/javascript">
+	window.onload=function(){
+		var aA=document.getElementsByTagName("a");
+		for(var i=0;i<aA.length;i++){
+			aA[i].onmouseover=function(){
+				// 设置方法停止的时机
+				clearInterval(this.time);
+				// 此处this为当前a标签
+				var This=this;
+				// 设置方法每30毫秒运行一次
+				// 其中offsetWidth:对象的可见宽度，包括本身width+padding-border
+				// 当offsetWidth>=120时，程序停止。
+				This.time=setInterval(function(){
+					This.style.width=This.offsetWidth+8+"px";
+					if(This.offsetWidth>=160){
+					clearInterval(This.time);
+				}
+				},30);
+
+			}
+			aA[i].onmouseout=function(){
+				clearInterval(this.time);//初始清理
+				var This=this;
+				This.time=setInterval(function(){
+					This.style.width=This.offsetWidth-8+"px";
+					if(This.offsetWidth<=120){
+						clearInterval(This.time);
+					}
+				},30);
+			}	
+		}
+	}
+	</script>
+</body>
+</html>
