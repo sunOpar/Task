@@ -1,5 +1,5 @@
 function getClass(obj){//得到对象类型
-  return Object.prototype.toString.call(obj);
+  return Object.prototype.toString.call(obj).slice(8,-1);
 }
 function cloneObject(src){
   var result = getClass(src) === Array ? []:{};//为【for-in】循环做准备
