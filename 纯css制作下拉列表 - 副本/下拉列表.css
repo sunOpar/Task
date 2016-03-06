@@ -1,0 +1,38 @@
+div{
+	position: relative;
+	left: 35%;
+	margin-top: 20%;
+}
+ul,li{
+	list-style: none;
+}
+li{
+	height: 40px;
+	border-radius: 20px;
+}
+a{
+	text-decoration: none;
+	color: black;
+}
+.menu-bar>ul>li{
+	float: left;
+	width: 64px;
+	margin-left: 30px;
+	line-height: 40px;
+	text-align: center;
+background-color: rgba(228,238,243,.5);}
+.menu-bar>ul>li>ul>li{
+	width: 70px;
+	background-color: rgb(228,238,243);
+}
+.menu-bar>ul>li>ul>li li{
+	width: 85px;
+	background-color: rgb(228,238,243);
+}
+.menu-bar ul ul{
+	display: none;
+}
+.menu-bar li:hover>ul,.menu-bar li:hover{
+	display: block;
+	background-color: rgb(228,238,243);
+}

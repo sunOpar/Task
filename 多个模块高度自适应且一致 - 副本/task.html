@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+	.main{
+	width: 100%;
+	padding-bottom: 100px;
+	padding-top: 10px;
+	background-color: rgb(238,238,238);
+}
+.content-wrap{
+	width: 1000px;
+	margin: 0px auto;
+	overflow: hidden;
+	border:1px solid red;
+}
+
+.subcontent{
+	width: 320px;
+	float: left;
+	margin-left: 10px;
+	/*高度自适应关键代码*/
+	padding-bottom: 10000px;
+	margin-bottom: -10000px;
+	background-color: white;
+}
+.subcontent img{
+	margin: 10px;
+}
+.subcontent .text{
+	margin-top: 15px;
+	padding: 0 30px 30px 25px;
+	text-indent: 2em;
+	font-size: 12px;
+	line-height: 170%;	
+}</style>
+</head>
+<body>
+<div class="main">
+	<div class="content-wrap">
+		<div class="subcontent">
+			<img src="../img/1.jpg" alt="风景">
+			<div class="text">
+				<p>
+				这里是正文，这里是正文，这里是正文，这里是正文，这里是正文，这里是正文，这里是正文，</p>
+				<p>这里是正文，这里是正文，这里是正文，这里是正文，这里是正文，这里是正文，</p>
+				<p>这里是正文，这里是正文，这里是正文，这里是正文，这里是正文，这里是正文，这里是正文，</p>
+			</div>	
+		</div>
+		<div class="subcontent">
+			<img src="../img/2.jpg" alt="风景">
+			<div class="text">	
+				<p>这三个白色模块的高度需要保持一致，且自适应文字内容高度。</p>
+			</div>
+		</div>
+		<div class="subcontent">
+			<img src="../img/3.jpg" alt="风景">			
+			<div class="text">	
+				<p>这里是正文，这里是正文，这里是正文</p>
+				<p>这里是正文，这里是正文，这里是正文，这里是正文，这里是正文，这里是正文，这里是正文，这里是正文，这里是正文，这里是正文，这里是正文，这里是正文，</p>
+			</div>	
+		</div>
+	</div>
+</div>
+</body>
+</html>
