@@ -1,6 +1,3 @@
-function Trim(str) {
-  return str.replace(/^\s*|\s*$/,'');
+function trim(arr){
+	return arr.replace(/^\s*|\s*$/g,'');
 }
-// 例子
-var str = '   hi!   ';
-var s = Trim(str);
