@@ -172,7 +172,7 @@
 
 <script type="text/javascript">
 $(function(){
-	$('#alllike').delegate($('.likebodyin'),'click mouseover',function(e){
+	$('#alllike').delegate($('.likebodyin'),'click mouseover mouseout',function(e){
 		var type = e.type;
 		if(type == 'click'){
 			if($(e.target).hasClass('likeoff') || $(e.target).hasClass('likeon')){
@@ -186,8 +186,15 @@ $(function(){
 				if($('.likebodyin').filter('.likeon')){
 					var likeon = $('.likebodyin').filter('.likeon');
 					changeState(likeon,type);
-					changeState($(e.target),type);
 				}
+				changeState($(e.target),type);
+
+			}
+		}
+		else if(type == 'mouseout'){
+			if($(e.target).hasClass('likeon') && !$(e.target).hasClass('likeon-click')){
+				console.log('mouseout do!');
+				changeState($(e.target),type);
 			}
 		}
 	});
@@ -220,6 +227,14 @@ $(function(){
 				obj.removeClass('likeoff');
 				obj.addClass('likeon');
 				handler = 'add';
+				changeImgUrl(obj,imgUrl,handler);
+			}
+		}
+		if(type == 'mouseout'){
+			if(obj.hasClass('likeon')){
+				obj.removeClass('likeon');
+				obj.addClass('likeoff');
+				handler= 'remove';				
 				changeImgUrl(obj,imgUrl,handler);
 			}
 		}
