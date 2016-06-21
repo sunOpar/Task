@@ -1,21 +1,17 @@
 $(function(){
-function wrap(){
-	var x = 20;
-	return function lala(){
-		$('#target').animate({
-			marginTop: -x +'px'
-		},500,function(){
+ function lala(){
+	$('#target').animate({
+		marginTop: -20 +'px'
+	},500,function(){
 		var length = $('li').length;
-		var fir = $('li')[0];
-		console.log(fir);
+		console.log(length);		
+		var fir = $($('li')[0]);
 		var parent = $('ul');
-		parent.append(fir);
+		fir.insertAfter($($('li')[length-1]));
+		// parent.append(fir);
 		$('#target').css('marginTop',0);	
-		});
+	});
 	}
-}
-var a = wrap();
 setInterval(function(){
-a();},5000);
-
+lala();},1000);
 });
