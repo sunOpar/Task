@@ -10,7 +10,29 @@
     cursor: -moz-zoom-in;
 	}
 	.toBig{
-		transform: scale(1,2);
+		transform: scale(1.4) translate(100px,100px);
+		cursor: -webkit-zoom-out;
+   		cursor: -moz-zoom-out;
+	}
+	.big{
+		position: fixed;
+		z-index: 101;
+	}
+	img{
+	    	transition: all 0.3s;
+	   -moz-transition: all 0.3s;	/* Firefox 4 */
+	-webkit-transition: all 0.3s;	/* Safari 和 Chrome */
+	     -o-transition: all 0.3s;
+	}
+	.bg-wrap{
+		position: fixed;
+		top: 0;bottom: 0;left: 0;right: 0;
+		z-index: 100;
+	}
+	.bg{
+		position: absolute;
+		top: 0;bottom: 0;left: 0;right: 0;
+		background-color: rgba(0,0,0,0.85);
 	}
 </style>
 <body>
