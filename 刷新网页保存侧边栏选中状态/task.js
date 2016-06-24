@@ -1,17 +1,16 @@
-$(document).ready(function(){
-		var windowsUrl = location.hash.toLowerCase();
-		console.log(windowsUrl);
-		var targetUrl = ['n1','n2','n3','n4','n5','n6','n7','n8'];
-		changeUrl.init(windowsUrl,targetUrl);
-	});
-	var changeUrl ={
+var changeUrl ={
 		//截取url中末尾
 		getUrl: function(targetUrl){
-			console.log(targetUrl);
-			var url = targetUrl.match(/#\w+/).toString();
-			url = url.replace('#','');
-			console.log(url);
-			return url;
+			console.log("targetUrl"+targetUrl);
+			if(targetUrl.search(/personal-center[a-zA-Z0-9-_#\/]+/)>-1){
+				var url = targetUrl.match(/personal-center[a-zA-Z0-9-_#\/]+/).toString();
+				url = url.replace(/personal-center[#\/]{0,1}/,'');
+				console.log('url为：'+url);
+				return url;
+			}else{
+				
+				return false;
+			}
 		},
 		//判断截取的url与本地是否对应
 		match:function(sliceUrl,targetUrl){
@@ -21,18 +20,17 @@ $(document).ready(function(){
 					return true;
 				}
 				else{
-					console.log(targetUrl[i]);
+					console.log('当前截取的url为：'+sliceUrl);
+					console.log('数组中的url为：'+targetUrl[i]);
 				}
 			}
 		},
+		//给预制对应的sidebar增加样式
 		changeSidebar:function(sliceUrl){
 			var ele = $('.'+sliceUrl);
 			console.log(sliceUrl);
 			console.log(ele);
-			var li = $(ele.children('li'));
-			console.log(li.html());
-			li.addClass('on-myList');
-			console.log(li.attr('class'));
+			ele.addClass('on-myList');
 		},
 		init:function(windowsUrl,targetUrl){
 			var i = targetUrl.length > 0? targetUrl.length:0;
@@ -41,12 +39,14 @@ $(document).ready(function(){
 			}
 			else{
 				var sliceUrl = this.getUrl(windowsUrl);
-				console.log('浏览器地址为：'+sliceUrl);
-				console.log('target:'+targetUrl);
-				var a = this.match(sliceUrl,targetUrl);
-				if(a){
-					console.log('执行了');
-					this.changeSidebar(sliceUrl);
+				if(sliceUrl){
+					var a = this.match(sliceUrl,targetUrl);
+					if(a){
+						this.changeSidebar(sliceUrl);
+					}
+				}
+				else{
+					return;
 				}
 			}
 		}
