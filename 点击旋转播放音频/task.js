@@ -23,6 +23,7 @@ $(function(){
 			$('.playleft').removeClass('playleft-on');
 			$('.playright').removeClass('playright-on');
 			$('.music-source')[0].pause();
+			$('.music-source')[0].load();
 	},false);
 
 });

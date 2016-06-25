@@ -1,11 +1,9 @@
-var MoveAnimate = function(ele,handle,group,wrap){
+var MoveAnimate = function(ele,handle,wrap){
 	this.ele = ele;
 	this.width =parseInt(this.ele.css('width')); 
 	this.handle = handle;
-	this.group = group;
 	this.wrap = wrap;
 	this.count = 0;
-	this.init();
 }
 MoveAnimate.prototype.init = function(){
 	var that = this;
@@ -22,19 +20,21 @@ MoveAnimate.prototype.init = function(){
 	})
 }
 MoveAnimate.prototype.doAll = function(imgLength){
-	if(this.count < imgLength*2-2){
+		if(this.count < imgLength-1){
 		this.count+=1;
-	}
-	else{
-		this.count = -1;
-	}
-//	this.count = this.count%2==0? this.count: ++this.count;
-	console.log(this.count);
-	var level = this.width*this.count/2;
-	this.wrap.css('transform',"translate3d("+-level+"px,0px, 0px)");
-	
-	this.handle.filter(".act_on").removeClass('act_on');
-	$(this.handle[this.count/2]).delay(1000).addClass('act_on');
+		}
+		else{
+			this.count = 0;
+		}
+		console.log(this.count);
+
+		var level = this.width*this.count;
+		var act_on = this.handle.filter(".act_on");
+		if(imgLength <= 5){
+			this.wrap.css('transform',"translate3d("+-level+"px,0px, 0px)");
+			act_on.removeClass('act_on');
+			$(this.handle[this.count]).delay(1000).addClass('act_on');	
+		}
 }
 MoveAnimate.prototype.showMes = function(e){
 	this.handle.parent().find('.act_on')? this.handle.parent().find('.act_on').removeClass('act_on'): 0;
@@ -50,35 +50,13 @@ MoveAnimate.prototype.showMes = function(e){
 		li = $(e.target).parents('li');
 		div = $(e.target);
 	}
-//	li.children('div').show();
-//	div.addClass('act_on');
 	li.addClass('act_on');
 }
 MoveAnimate.prototype.doNaimate = function(e) {
-	var akey = [],
-		value = [];
 	var count = 0;
-	for(var key in this.group){
-		akey[count] = key;
-		value[count] = this.group[key];
-		count++;
-	}
 	var target = $(e.target).data('handle');
-	switch(target){
-		case value[0]:
-			this.wrap.css('transform','translate3d('+0+'px, 0px, 0px)');			
-			break;
-		case value[1]:
-			this.wrap.css('transform','translate3d('+(-this.width)+'px, 0px, 0px)');			
-			break;
-		case value[2]:
-			this.wrap.css('transform','translate3d('+(-this.width*2)+'px, 0px, 0px)');			
-			break;
-		case value[3]:
-			this.wrap.css('transform','translate3d('+(-this.width*3)+'px, 0px, 0px)');			
-			break;
-		case value[4]:
-			this.wrap.css('transform','translate3d('+(-this.width*4)+'px, 0px, 0px)');			
-			break;
-	}
+	console.log('target:'+parseInt(target.charAt( target.length - 1)));
+	count = parseInt(target.charAt( target.length - 1));
+	this.wrap.css('transform','translate3d('+(-this.width*count)+'px, 0px, 0px)');	
+
 };

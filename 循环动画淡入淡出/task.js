@@ -6,7 +6,6 @@ function Banner(wrap,li,showTime,hideTime){
 	this.DELY = hideTime - 1500;
 }
 Banner.prototype.init = function(){
-	// setInterval(function(){
 	var that = this; 
 	that.cyclePlay(that,this.li.length);
 	setInterval(function(){
@@ -15,17 +14,20 @@ Banner.prototype.init = function(){
 }
 Banner.prototype.cyclePlay = function(that,length){
 	var oldRight = '';
-	for(var i = 0; i < length;i++){
-		$(that.li[i]).children().delay(that.DELY*i).animate({
-		opacity: '1'
-	},that.showTime);
-			oldRight = $(that.li[i]).children().css('right');
-			$(that.li[i]).children().animate({
-			right: '450px',
-			opacity: '0'
-		},that.hideTime);
-			$(that.li[i]).children().animate({
-				right: oldRight,
-			},1);
-	}
+	 for(var i = 0; i < length;i++){
+	 	(function(i){
+	 	$(that.li[i]).children().delay(that.DELY*i).animate({
+	        opacity: '1'
+	    },that.showTime,function(){
+	            oldRight = $(that.li[i]).children().css('right');
+	            $(that.li[i]).children().animate({
+	            right: '450px',
+	            opacity: '0'
+	        },that.hideTime,function(){
+	            $(that.li[i]).children().css('right',oldRight);
+	        });
+	            });	
+	 	})(i);
+        
+    }
 }
