@@ -10,11 +10,14 @@ var module = (function($){
 		// 	'needMostx':803+showImg.width
 		// 	'needMosty':150+showImg.height
 		// };
-		var coordinate = [_msg.showImgBound.left,
-						_msg.showImgBound.top,
-						e.pageX,e.pageY,
-						_msg.showImgBound.right,
-						_msg.showImgBound.bottom];
+		var coordinate = [_msg.showImgBound.left + _msg.scrollLeft,
+						  _msg.showImgBound.top  + _msg.scrollTop,
+						  e.pageX,
+						  e.pageY,
+						  _msg.showImgBound.right,
+						  _msg.showImgBound.bottom
+						 ];
+		console.log(coordinate);
 		if( coordinate[3] >= coordinate[1] &&
 			coordinate[3] <= coordinate[5] &&
 			coordinate[2] >= coordinate[0] &&
@@ -30,17 +33,15 @@ var module = (function($){
 	var _hideMagnifier = function(){
 		_msg.magnifier.hide();
 	}
-	var _showMagnifier = function(coordinate){		// var img = magnifier.children('img'),
-		// wrapHeight = magnifier.height()/4,
-		// wrapWidht = magnifier.width()/4;
+	var _showMagnifier = function(coordinate){
 		_msg.magnifier.show();
 		_msg.magnifier.css({
 			'top' :coordinate[3]-_msg.wrapHeight+'px',
 			'left':coordinate[2]-_msg.wrapHeight/2+'px'
 		});
 		_msg.magnifier_img.css({
-			'top':-(coordinate[3]-coordinate[1]-_msg.wrapHeight/3.2)*1.5+'px',
-			'left':-(coordinate[2]-coordinate[0]-_msg.wrapWidht/3.2)*1.5+'px'
+			'top':-(coordinate[3]-coordinate[1]-_msg.wrapHeight/3.2)*_msg.scale+'px',
+			'left':-(coordinate[2]-coordinate[0]-_msg.wrapWidht/3.2)*_msg.scale+'px'
 		});
 
 	}
@@ -63,7 +64,12 @@ var module = (function($){
 			'magnifier_img': magnifier.children('img'),
 			'wrapHeight'   : magnifier.height(),
 			'wrapWidht'    : magnifier.width(),
- 			'showImgBound'     : showImg[0].getBoundingClientRect()
+ 			'showImgBound' : showImg[0].getBoundingClientRect(),
+ 			'scale'		   : 1,
+ 			'scrollLeft'   : Math.max(document.documentElement.scrollLeft,  
+　　                             document.body.scrollLeft),  
+            'scrollTop'    : Math.max(document.documentElement.scrollTop,  
+　　                             document.body.scrollTop) 
 		}
 		$(window).on('resize',function(){
 			_msg.showImgBound = showImg[0].getBoundingClientRect();
@@ -72,6 +78,7 @@ var module = (function($){
 		
 	}
 	var resizeImg = function(img1,img2,scale){
+		_msg.scale = scale;
 		var height = img1.height();
 		var width = img1.width();
 		img2.css({
