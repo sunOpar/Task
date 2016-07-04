@@ -1,0 +1,27 @@
+{
+  "name": "xuyg",
+  "version": "1.0.0",
+  "description": "my task for webpack",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/sunbrother/Task.git"
+  },
+  "keywords": [
+    "webpack",
+    "task"
+  ],
+  "author": "xuyg",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sunbrother/Task/issues"
+  },
+  "homepage": "https://github.com/sunbrother/Task#readme",
+  "devDependencies": {
+    "webpack": "^1.13.1",
+    "webpack-dev-server": "^1.14.1"
+  }
+}
