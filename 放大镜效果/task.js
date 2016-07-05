@@ -87,7 +87,7 @@ var module = (function($){
 		});
 	}
 	return {
-		init:init,
-		resizeImg:resizeImg
+		'init':init,
+		'resizeImg':resizeImg
 	}
 })(jQuery);
