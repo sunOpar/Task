@@ -4,11 +4,13 @@ function User_index(ul,addTop){
 	this.doanimate();
 	this.bindmouse();
 }
+
+
 User_index.prototype.doanimate = function(){
 		var that = this;
 		this.timer = setInterval(function(){
-			var vtop = parseInt(that.ul.css('top'),10);
-			if(vtop <= (-that.addTop-3)){
+			var vtop = parseInt(that.ul.css('top'),10) || 0;
+			if(vtop <= (-that.addTop+5)){
 				vtop = -3;
 			}
 				that.ul.css({
@@ -24,7 +26,6 @@ User_index.prototype.bindmouse = function(){
 			}
 			else if(e.type == 'mouseleave'){
 				that.doanimate(9);
-				console.log(111);
 			}
 		});
 }
