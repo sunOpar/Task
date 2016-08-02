@@ -1,4 +1,4 @@
-// bind将上下文绑定在document上
+// bind方法创建一个新函数，并将document作为this值
 var $ = document.querySelectorAll.bind(document);
 // 将Nodelist转为数组
 myList = Array.prototype.slice.call(myNodeList);
