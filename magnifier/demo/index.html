@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>magnifier</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<div class="container">
+<div class="picture-wrap">
+<<<<<<< HEAD:放大镜效果/index.html
+<iframe frameborder="0" allowfullscreen="true" width="100%" height="100%"></iframe>
+	<img src="img/2.jpg">
+</div>
+<div class="magnifier">
+	<img src="img/2.jpg">
+</div>
+=======
+	<img src="../img/2.jpg">
+</div>
+
+</div>
+<div class="magnifier">
+	<img src="../img/2.jpg">
+>>>>>>> 51b6b2c92a193d8b8689d76c31b7c8c48c1d3fc4:magnifier/demo/index.html
+</div>
+</body>
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.js"></script>
+<script type="text/javascript" src="task.js"></script>
+<script type="text/javascript">
+$(function(){
+	var showImg = $('.picture-wrap img');
+	var originImg = $('.magnifier img');
+	var magnifier = $('.magnifier');
+	var demo = module;
+	var scale = 1.5;
+	demo.init(showImg,magnifier);
+	demo.resizeImg(showImg,originImg,scale);
+})
+</script>
+</html>
