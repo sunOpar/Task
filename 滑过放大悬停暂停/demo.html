@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>demo</title>
+</head>
+<style type="text/css">
+  .child{
+    width: 100px;height: 100px;
+    margin-right: 50px;
+    transition: transform 1s;
+    -moz-transition: transform 1s;  
+-webkit-transition: transform 1s; 
+-o-transition: transform 1s;
+  }
+  .child img{
+    width: 100%;
+  }
+  .animate{
+    animation: scale 0.5s ease-in-out;
+    -moz-animation: scale 0.5s ease-in-out; /* Firefox */
+    -webkit-animation: scale 0.5s ease-in-out;  /* Safari 和 Chrome */
+    -o-animation: scale 0.5s ease-in-out;
+  }
+  .reduceAnimate{
+    animation: reduce 0.5s ease-in-out;
+    -moz-animation: reduce 0.5s ease-in-out; /* Firefox */
+    -webkit-animation: reduce 0.5s ease-in-out;  /* Safari 和 Chrome */
+    -o-animation: reduce 0.5s ease-in-out;
+  }
+  
+  .magnify{
+      transform: scale(1.5);
+  }
+  .reduce{
+      transform: scale(1);
+  }
+  .wrap1{
+    margin:50px;
+    border:1px solid red;
+  }
+  @keyframes sacle{
+    0%{
+      transform: scale(1);
+    }
+    100%{
+      transform: scale(1.5);
+    }
+    /*100%{
+      transform: scale(1);
+    }*/
+
+  }
+  @-moz-keyframes scale{
+  0%{
+      transform: scale(1);
+    }
+    100%{
+      transform: scale(1.5);
+    }
+    /*100%{
+      transform: scale(1);
+    }*/
+}
+
+@-webkit-keyframes scale /* Safari 和 Chrome */
+{
+   0%{
+      transform: scale(1);
+    }
+    100%{
+      transform: scale(1.5);
+    }
+    /*100%{
+      transform: scale(1);
+    }*/
+}
+@-webkit-keyframes reduce /* Safari 和 Chrome */
+{
+   0%{
+      transform: scale(1.5);
+    }
+    100%{
+      transform: scale(1);
+    }
+    /*100%{
+      transform: scale(1);
+    }*/
+}
+
+@-o-keyframes scale /* Opera */
+{
+0%{
+      transform: scale(1);
+    }
+    100%{
+      transform: scale(1.5);
+    }
+    /*100%{
+      transform: scale(1);
+    }*/
+}
+
+</style>
+<body>
+<div class="wrap1">
+  <div class="child">
+  <img src="a.jpg">
+  </div>
+  </div>
+
+<div class="wrap1">
+  <img class="child" src="a.jpg">
+  <img class="child" src="a.jpg">
+  <img class="child" src="a.jpg">
+  <img class="child" src="a.jpg">
+  <img class="child" src="a.jpg">
+</div>
+</body>
+<script type="text/javascript">
+  // var isLeave=false;
+  // 获取页面所有的类名为child元素
+  var animate = (function(){
+    var _msg = {};
+    var removeClass = function(obj,name){
+      if(obj.className.indexOf(name)!==-1){
+        var newClass = obj.className.replace(name,'');
+          obj.className = newClass.trim();
+      }  
+    }
+    var bindEnter=function(ele,delay){
+      ele.addEventListener("mouseenter",function(e){
+      ele['isLeave']=false;
+      ele.className+=' magnify animate';
+              removeClass(ele,'reduceAnimate');
+
+      setTimeout(function(){
+        removeClass(ele,'animate');
+        if(ele['isLeave']){
+          if(ele.className.indexOf('reduceAnimate')===-1){
+            ele.className+=" reduceAnimate";
+          }
+        }
+      },delay);
+      },false);
+    
+    }
+    var bindOut = function(ele){
+      child[i].addEventListener("mouseleave",function(e){
+        ele['isLeave']=true;
+        removeClass(ele,'magnify');
+      },false);
+    }
+    var init = function(ele,delay){
+      bindEnter(ele,delay);
+      bindOut(ele);
+    }
+    return {
+      init:init
+    }
+  })();
+  var child = document.querySelectorAll('.child');
+  // for循环遍历所有类名为child的元素
+  for(var i=0,len=child.length;i<len;i++){
+    // 为每一个元素绑定鼠标移入事件，为鼠标移入的元素增加animate类
+    animate.init(child[i],500);
+  }
+  
+</script>
+</html>
