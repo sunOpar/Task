@@ -1,0 +1,12 @@
+<script type="text/javascript">
+            var phoneWidth = parseInt(window.screen.width);
+		    var phoneScale = phoneWidth / 320;
+		    var ua = navigator.userAgent;
+		    if (/Android (\d+\.\d+)/.test(ua)) {
+		        var version = parseFloat(RegExp.Examples);
+		        document.write('<meta name="viewport" content="width=device-width, minimum-scale = ' + phoneScale + ', maximum-scale = ' + phoneScale + ', target-densitydpi=device-dpi ,user-scalable=no">');
+		        // 其他系统
+		    } else if(/iphone|ipod|ipad/gi.test(ua)){
+		        document.write('<meta name="viewport" content="width=320, user-scalable=no, target-densitydpi=device-dpi">');
+		    }
+</script>
